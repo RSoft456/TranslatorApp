@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/removeAds"
+        android:title="Remove Ads"
+        android:icon="@drawable/ic_remove_ads_24"
+        />
+    <item
+        android:id="@+id/savedChat"
+        android:title="Saved Chats"
+        android:icon="@drawable/ic_baseline_chat_24"
+        />
+    <item
+        android:id="@+id/bookmarkedList"
+        android:title="Bookmarked List"
+        android:icon="@drawable/ic_bookmark_24"
+        />
+    <item
+        android:id="@+id/translationHistory"
+        android:title="Translate History"
+        android:icon="@drawable/ic_baseline_history_24"
+        />
+    <item
+        android:id="@+id/shareWithFriends"
+        android:title="Shared With Friends"
+        android:icon="@drawable/ic_share_24"
+        />
+    <item
+        android:id="@+id/clipboard"
+        android:title="Auto Clip Board Translation"
+        android:checkable="true"
+        />
+
+</menu>
