@@ -4,8 +4,25 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2085" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/button_background.xml" value="0.1615" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.2045" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.2045" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.2045" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_baseline_cancel_presentation_24.xml" value="0.2045" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_baseline_chat_24.xml" value="0.2045" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_baseline_history_24.xml" value="0.2045" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.2045" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_baseline_mic_24.xml" value="0.2045" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_baseline_swap_horiz_24.xml" value="0.2045" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_baseline_volume_up_24.xml" value="0.2045" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_bookmark_24.xml" value="0.2045" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2085" />
-        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/activity_main.xml" value="0.4774774774774775" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_remove_ads_24.xml" value="0.2045" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_share_24.xml" value="0.2045" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/language_background.xml" value="0.1935" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/main_background.xml" value="0.1935" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/translated_textarea_background.xml" value="0.536" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/drawer_header.xml" value="0.24895833333333334" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/drawer_layout.xml" value="0.24895833333333334" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/menu/drawer_menu.xml" value="0.24895833333333334" />

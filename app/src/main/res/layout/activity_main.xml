@@ -5,51 +5,224 @@
     android:id="@+id/DrawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:background="@color/grey"
+    android:orientation="vertical"
+    tools:context=".avtivities.MainActivity">
+
 
     <!--        in this layput the actual screen behind drawer is shown-->
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:orientation="vertical">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?android:actionBarSize"
             android:background="@color/blue"
-            app:titleTextColor="@color/white"
             app:title="All Translator"
-            />
-        <LinearLayout
-            android:id="@+id/screenContent"
+            app:titleTextColor="@color/white" />
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/screenContent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Albanian"
-                    android:drawableEnd=""/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_margin="5dp"
+                    android:background="@drawable/main_background"
+                    android:orientation="vertical">
 
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/language_background">
+
+                        <TextView
+                            android:id="@+id/leftLanguage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:paddingStart="30dp"
+                            android:text="Albanian"
+                            android:textColor="@color/white"
+                            android:textSize="20dp"
+                            app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="2"
+                            android:src="@drawable/ic_baseline_swap_horiz_24" />
+
+                        <TextView
+                            android:id="@+id/rightLanguage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_gravity="center"
+                            android:paddingEnd="30dp"
+                            android:text="English"
+                            android:textColor="@color/white"
+                            android:textSize="20dp"
+                            app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/textToBeTranslated"
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="top"
+                            android:hint="Enter text to Translate" />
+
+                        <ImageView
+                            android:id="@+id/cancelButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/ic_baseline_cancel_presentation_24" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:orientation="horizontal"
+                        android:paddingEnd="5dp">
+
+                        <ImageButton
+                            android:id="@+id/volume"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/button_background"
+                            android:src="@drawable/ic_baseline_volume_up_24"
+                            android:visibility="gone" />
+
+                        <ImageButton
+                            android:id="@+id/convert"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/button_background"
+                            android:src="@drawable/ic_baseline_arrow_forward_24"
+                            android:visibility="gone" />
+
+
+                        <ImageButton
+                            android:id="@+id/mike"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/button_background"
+                            android:src="@drawable/ic_baseline_mic_24"
+                            android:visibility="visible" />
+
+                        <ImageButton
+                            android:id="@+id/camera"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/button_background"
+                            android:src="@drawable/ic_baseline_camera_alt_24"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/translatedTextArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/translated_textarea_background"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="Basque (Euskal)"
+                        android:textColor="@color/white"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="ejgerjnfjndksdjvn"
+                        android:textColor="@color/white"
+                        android:textSize="18.5dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:orientation="horizontal"
+                        android:paddingEnd="5dp">
+
+                        <ImageButton
+                            android:id="@+id/star"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/button_background"
+                            android:src="@drawable/ic_star_white_24"
+                            android:visibility="visible" />
+
+                        <ImageButton
+                            android:id="@+id/sound"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/button_background"
+                            android:src="@drawable/ic_baseline_volume_up_24"
+                            android:visibility="visible" />
+
+                        <ImageButton
+                            android:id="@+id/inTranslatedMenu"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/button_background"
+                            android:src="@drawable/ic_baseline_more_vert_24"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
-
-        </LinearLayout>
+        </ScrollView>
     </LinearLayout>
+
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/Navigation_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/drawer_menu"
-        app:headerLayout="@layout/drawer_header"/>
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/drawer_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>
