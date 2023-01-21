@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Translator"
         tools:targetApi="31" >
         <activity
-            android:name=".LanguagesList"
+            android:name=".avtivities.LanguagesList"
             android:exported="false" />
         <activity
             android:name=".avtivities.MainActivity"

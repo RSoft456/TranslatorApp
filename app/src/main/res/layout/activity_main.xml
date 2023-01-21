@@ -121,7 +121,7 @@
                             android:layout_margin="5dp"
                             android:background="@drawable/button_background"
                             android:src="@drawable/ic_baseline_volume_up_24"
-                            android:visibility="gone" />
+                            android:visibility="visible" />
 
                         <ImageButton
                             android:id="@+id/convert"
@@ -130,7 +130,7 @@
                             android:layout_margin="5dp"
                             android:background="@drawable/button_background"
                             android:src="@drawable/ic_baseline_arrow_forward_24"
-                            android:visibility="gone" />
+                            android:visibility="visible" />
 
 
                         <ImageButton
@@ -171,6 +171,7 @@
                         android:textSize="18dp" />
 
                     <TextView
+                        android:id="@+id/translatedText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
