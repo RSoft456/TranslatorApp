@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginEnd="30dp"
+    android:layout_marginBottom="3dp"
+    android:background="@drawable/receiver_conversation_bg">
+
+    <TextView
+
+        android:id="@+id/textInConvoReceiver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginBottom="5dp"
+        android:paddingEnd="10dp"
+android:paddingBottom="10dp"
+        android:text="hello"
+        android:textColor="@color/blue" />
+
+    <TextView
+        android:background="@drawable/line"
+android:paddingTop="10dp"
+        android:id="@+id/translatedTextInConvoReceiver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textInConvoReceiver"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="70dp"
+        android:text="hello"
+        android:textColor="@color/darblue" />
+
+    <RelativeLayout
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/translatedTextInConvoReceiver"
+        >
+
+        <ImageView
+            android:id="@+id/copyTextConvoReceiver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:src="@drawable/ic_baseline_content_copy_receiver_24" />
+
+        <ImageView
+            android:id="@+id/volumeTextConvoReceiver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/copyTextConvoReceiver"
+            android:padding="5dp"
+            android:src="@drawable/ic_baseline_volume_receiver_24" />
+    </RelativeLayout>
+
+</RelativeLayout>

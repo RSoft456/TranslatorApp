@@ -146,6 +146,12 @@ public class MainActivity extends AppCompatActivity {
                 if (menuItemid == R.id.clipboard) {
                     drawerLayout.closeDrawer(GravityCompat.START);
                 }
+                if(menuItemid == R.id.conversation)
+                {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    Intent i = new Intent(MainActivity.this,Conversation.class);
+                    startActivity(i);
+                }
                 return false;
             }
         });

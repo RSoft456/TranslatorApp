@@ -8,8 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#DDEFECEC</color>
-
+    <color name="yellow">#DCBC69</color>
     <color name="blue">#4286F5</color>
     <color name="statusBar">#346AC2</color>
-
+    <color name="darblue">#2F627E   </color>
+<color name="senderConversationColor">#FFF3D0</color>
+    <color name="receiverConversationColor">#CFEEFF</color>
 </resources>
