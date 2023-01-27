@@ -26,9 +26,9 @@ import java.util.ArrayList;
 
 public class LanguagesList extends AppCompatActivity {
     Toolbar toolbar;
-    RecyclerView RV;
     ArrayList<LanguageModel> langList = new ArrayList<>();
     public static int resultCode = 0;
+    RecyclerView RV;
     LanguageListAdapter rvAdapter = new LanguageListAdapter();
 
     @Override

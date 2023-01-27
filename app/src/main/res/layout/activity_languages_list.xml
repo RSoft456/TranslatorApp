@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+android:background="@color/langListBg"
     tools:context=".avtivities.LanguagesList">
 
   <androidx.appcompat.widget.Toolbar
@@ -19,5 +20,6 @@
       android:id="@+id/languageListRV"
       android:layout_below="@id/toolbarLanguageList"
       android:layout_width="match_parent"
+      android:layout_marginTop="5dp"
       android:layout_height="match_parent" />
 </RelativeLayout>

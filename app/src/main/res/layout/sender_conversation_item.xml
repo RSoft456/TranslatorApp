@@ -1,46 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="end"
-    android:layout_marginLeft="30dp"
+    android:gravity="end"
+    android:layout_marginStart="30dp"
     android:layout_marginTop="3dp"
-    android:layout_marginRight="10dp"
+    android:layout_marginEnd="10dp"
     android:layout_marginBottom="3dp"
-    android:background="@drawable/sender_conversation_bg">
-
+    >
+<RelativeLayout
+    android:background="@drawable/sender_conversation_bg"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
     <TextView
 
         android:id="@+id/textInConvoSender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
-        android:layout_marginRight="80dp"
+        android:layout_marginEnd="80dp"
         android:layout_marginBottom="5dp"
+        android:paddingStart="0dp"
         android:paddingEnd="10dp"
         android:paddingBottom="10dp"
-        android:text="hello"
+        android:text="hellooooooooooooooooooooooooooooooooooooo"
         android:textColor="@color/blue" />
 
     <TextView
-        android:background="@drawable/line"
-android:paddingTop="10dp"
         android:id="@+id/translatedTextInConvoSender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textInConvoSender"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="80dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="80dp"
+        android:background="@drawable/line"
+        android:paddingTop="10dp"
         android:text="hello"
         android:textColor="@color/darblue" />
 
     <RelativeLayout
-        android:layout_margin="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/translatedTextInConvoSender"
+        android:layout_margin="20dp"
 
 
         >
@@ -56,9 +61,9 @@ android:paddingTop="10dp"
             android:id="@+id/volumeTextConvoSender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/copyTextConvoSender"
+            android:layout_toEndOf="@id/copyTextConvoSender"
             android:padding="5dp"
             android:src="@drawable/ic_baseline_volume_24" />
     </RelativeLayout>
-
+</RelativeLayout>
 </RelativeLayout>

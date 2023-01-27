@@ -26,6 +26,7 @@
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/language_conversation_bg.xml" value="0.205" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/languagelist_item_bg.xml" value="0.2045" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/line.xml" value="0.536" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/line_list.xml" value="0.205" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/main_background.xml" value="0.1935" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/mic_bg.xml" value="0.205" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/mic_bg_2.xml" value="0.205" />
@@ -33,7 +34,7 @@
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/sender_conversation_bg.xml" value="0.205" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/translated_textarea_background.xml" value="0.536" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/activity_api_integration.xml" value="0.15416666666666667" />
-        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/activity_conversation.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/activity_conversation.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/activity_languages_list.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/drawer_header.xml" value="0.24895833333333334" />
@@ -41,6 +42,8 @@
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/language_list_items.xml" value="0.24895833333333334" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/receiver_conversation_item.xml" value="0.18671875" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/sender_conversation_item.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/test.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/menu/conversation_menu.xml" value="0.18671875" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/menu/drawer_menu.xml" value="0.24895833333333334" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/menu/navigation_menu.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/menu/pop_up_menu.xml" value="0.24895833333333334" />

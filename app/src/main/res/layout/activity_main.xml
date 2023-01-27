@@ -62,6 +62,7 @@
                             app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24" />
 
                         <ImageView
+                            android:id="@+id/swapLanguage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"

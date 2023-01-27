@@ -3,10 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 <LinearLayout
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/languagelist_item_bg"
-android:layout_margin="5dp"
+    android:background="@drawable/line_list"
+
     >
     <ImageView
         android:id="@+id/countryIcon"
@@ -14,12 +16,13 @@ android:layout_margin="5dp"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_flag_circle_24"
         android:layout_margin="10dp"
+
         />
     <TextView
         android:id="@+id/countryName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_margin="10dp"
         android:textSize="18sp"
         android:text="Pakistan"/>

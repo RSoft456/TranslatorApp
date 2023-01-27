@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     LinearLayout translatedTextArea;
     ImageButton camera, mike, translate, volume, sound;
-    ImageView cancel;
+    ImageView cancel,swap;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     TextView languageFrom, languageTo, translatedText;
@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         languageFrom = findViewById(R.id.leftLanguage);
         languageTo = findViewById(R.id.rightLanguage);
         camera = findViewById(R.id.camera);
+        swap=findViewById(R.id.swapLanguage);
         translatedTextArea = findViewById(R.id.translatedTextArea);
         mike = findViewById(R.id.mike);
         sound = findViewById(R.id.sound);
@@ -72,6 +73,14 @@ public class MainActivity extends AppCompatActivity {
         cancel.setVisibility(View.GONE);
         volume.setVisibility(View.GONE);
         translatedTextArea.setVisibility(View.GONE);
+        swap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String left = languageFrom.getText().toString();
+                languageFrom.setText(languageTo.getText());
+                languageTo.setText(left);
+            }
+        });
         textToBeTranslated.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -97,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
                     camera.setVisibility(View.VISIBLE);
                     mike.setVisibility(View.VISIBLE);
                     translate.setVisibility((View.GONE));
+                    translatedTextArea.setVisibility(View.GONE);
                 } else {
                     camera.setVisibility(View.GONE);
                     mike.setVisibility(View.GONE);
@@ -113,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 translate.setVisibility(View.GONE);
                 textToBeTranslated.getText().clear();
+               translatedTextArea.setVisibility(View.GONE);
             }
         });
 
