@@ -174,12 +174,12 @@ clearButton.setVisibility(View.GONE);
             if (requestCode == 2) {
                 String lang = data.getStringExtra("country");
                 _left.setText(lang);
-                editor.putString("LEFTNAME", lang);
+                editor.putString("LNAME", lang);
                 editor.apply();
             } else if (requestCode == 3) {
                 String lang = data.getStringExtra("country");
                 _right.setText(lang);
-                editor.putString("RIGHTNAME", lang);
+                editor.putString("RNAME", lang);
                 editor.apply();
             } else if (requestCode == SPEECH_REQUEST_CODE && resultCode == RESULT_OK) {
                 List<String> results = data.getStringArrayListExtra(

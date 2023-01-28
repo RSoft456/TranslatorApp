@@ -11,6 +11,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.text.Editable;
@@ -24,26 +27,34 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.api.ramsha.translator.R;
+import com.example.api.ramsha.translator.api.apicalls.RetrofitClient;
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.JsonArray;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     LinearLayout translatedTextArea;
     ImageButton camera, mike, translate, volume, sound;
-    ImageView cancel,swap;
+    ImageView cancel, swap;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    TextView languageFrom, languageTo, translatedText;
+    TextView languageFrom, languageTo, translatedText,translatedTextLang;
     EditText textToBeTranslated;
     ImageButton inTranslatedMenu;
     SharedPreferences sharedPreference;
     SharedPreferences.Editor editor;
+    ProgressBar progressBar ;
     private static final int SPEECH_REQUEST_CODE = 0;
 
 
@@ -57,11 +68,13 @@ public class MainActivity extends AppCompatActivity {
         languageFrom = findViewById(R.id.leftLanguage);
         languageTo = findViewById(R.id.rightLanguage);
         camera = findViewById(R.id.camera);
-        swap=findViewById(R.id.swapLanguage);
+        progressBar=findViewById(R.id.progressBar);
+        swap = findViewById(R.id.swapLanguage);
         translatedTextArea = findViewById(R.id.translatedTextArea);
         mike = findViewById(R.id.mike);
         sound = findViewById(R.id.sound);
         translate = findViewById(R.id.convert);
+        translatedTextLang=findViewById(R.id.translatedTextLang);
         volume = findViewById(R.id.volume);
         cancel = findViewById(R.id.cancelButton);
         drawerLayout = findViewById(R.id.DrawerLayout);
@@ -73,6 +86,15 @@ public class MainActivity extends AppCompatActivity {
         cancel.setVisibility(View.GONE);
         volume.setVisibility(View.GONE);
         translatedTextArea.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
+
+
+// Create a new drawable for the loader
+        Drawable newDrawable = progressBar.getIndeterminateDrawable().mutate();
+        newDrawable.setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
+
+// Set the new drawable as the loader drawable
+        progressBar.setIndeterminateDrawable(newDrawable);
         swap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,15 +145,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 translate.setVisibility(View.GONE);
                 textToBeTranslated.getText().clear();
-               translatedTextArea.setVisibility(View.GONE);
+                translatedTextArea.setVisibility(View.GONE);
             }
         });
 
         translate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                translatedTextArea.setVisibility(View.VISIBLE);
-                translatedText.setText(textToBeTranslated.getText());
+                progressBar.setVisibility(View.VISIBLE);
+                getTranslation(textToBeTranslated.getText().toString(),"en","ur");
+
+                //translatedText.setText(textToBeTranslated.getText());
             }
         });
         inTranslatedMenu.setOnClickListener(new View.OnClickListener() {
@@ -157,10 +181,9 @@ public class MainActivity extends AppCompatActivity {
                 if (menuItemid == R.id.clipboard) {
                     drawerLayout.closeDrawer(GravityCompat.START);
                 }
-                if(menuItemid == R.id.conversation)
-                {
+                if (menuItemid == R.id.conversation) {
                     drawerLayout.closeDrawer(GravityCompat.START);
-                    Intent i = new Intent(MainActivity.this,Conversation.class);
+                    Intent i = new Intent(MainActivity.this, Conversation.class);
                     startActivity(i);
                 }
                 return false;
@@ -201,13 +224,17 @@ public class MainActivity extends AppCompatActivity {
         if (data != null) {
             if (requestCode == 2) {
                 String lang = data.getStringExtra("country");
+                String langCode = data.getStringExtra("languageCode");
                 languageFrom.setText(lang);
                 editor.putString("LEFTNAME", lang);
+                editor.putString("LEFTNAMECODE", langCode);
                 editor.apply();
             } else if (requestCode == 3) {
                 String lang = data.getStringExtra("country");
+                String langCode = data.getStringExtra("languageCode");
                 languageTo.setText(lang);
                 editor.putString("RIGHTNAME", lang);
+                editor.putString("RIGHTNAMECODE", langCode);
                 editor.apply();
             } else if (requestCode == SPEECH_REQUEST_CODE && resultCode == RESULT_OK) {
                 List<String> results = data.getStringArrayListExtra(
@@ -224,8 +251,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getSharedPre() {
-        String lName = sharedPreference.getString("LEFTNAME", "");
-        String rName = sharedPreference.getString("RIGHTNAME", "");
+        String lName = sharedPreference.getString("LEFTNAME", "English");
+        String rName = sharedPreference.getString("RIGHTNAME", "Urdu");
+        String lNameCode = sharedPreference.getString("LEFTNAMECODE", "En");
+        String rNameCode = sharedPreference.getString("RIGHTNAMECODE", "Ur");
         languageFrom.setText(lName);
         languageTo.setText(rName);
 
@@ -244,6 +273,42 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 // This starts the activity and populates the intent with the speech text.
         startActivityForResult(intent, SPEECH_REQUEST_CODE);
+    }
+
+    private void getTranslation(String inputWord, String inputLanguageCode, String targetLanguageCode) {
+        RetrofitClient retro = new RetrofitClient();
+        Call<JsonArray> translate = retro.getTranslationInterface().getTrans(inputLanguageCode, targetLanguageCode, inputWord);
+        StringBuilder sb = new StringBuilder();
+        translate.enqueue(new Callback<JsonArray>() {
+            @Override
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                try {
+                    JsonArray langArray = response.body();
+                    JsonArray array2 = (JsonArray)langArray.get(0);
+                    for(int i =0;i<array2.size();i++){
+                        JsonArray parseResult = (JsonArray) array2.get(i);
+                        String result = parseResult.get(0).getAsString();
+                        if(!result.contains("null")){
+                            sb.append(result);
+                        }
+                    }
+                    progressBar.setVisibility(View.GONE);
+                    translatedTextArea.setVisibility(View.VISIBLE);
+                    translatedTextLang.setText(languageTo.getText().toString());
+                    translatedText.setText(sb);
+                }catch (Exception e){
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(MainActivity.this, ""+ e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<JsonArray> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "fail", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

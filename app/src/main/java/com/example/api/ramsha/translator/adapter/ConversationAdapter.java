@@ -44,6 +44,7 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 case ConversationModel.Receiver_TYPE:
                     ((receiverViewHolder) holder).receiverText.setText(item.getConvoTextToBeTranslated());
                     ((receiverViewHolder) holder).receiverTranslatedText.setText(item.getConvoTranslatedText());
+
                     break;
                 case ConversationModel.Sender_TYPE:
                     ((senderViewHolder) holder).senderText.setText(item.getConvoTextToBeTranslated());
@@ -51,6 +52,7 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     break;
             }
         }
+
 
 
     }

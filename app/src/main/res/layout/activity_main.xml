@@ -39,18 +39,20 @@
                     android:id="@+id/screenContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="10dp"
                     android:background="@drawable/main_background"
                     android:orientation="vertical">
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_margin="3dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="4dp"
+
                         android:background="@drawable/language_background">
 
                         <TextView
+
                             android:id="@+id/leftLanguage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -106,6 +108,8 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginRight="15dp"
                             android:src="@drawable/ic_baseline_cancel_presentation_24" />
+
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -155,15 +159,18 @@
 
                 </LinearLayout>
 
+
+
                 <LinearLayout
                     android:id="@+id/translatedTextArea"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="10dp"
                     android:background="@drawable/translated_textarea_background"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/translatedTextLang"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
@@ -176,7 +183,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
-                        android:text="ejgerjnfjndksdjvn"
+                        android:text="default text"
                         android:textColor="@color/white"
                         android:textSize="18.5dp" />
 
@@ -227,4 +234,13 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer_menu" />
+    <ProgressBar
+
+        android:id="@+id/progressBar"
+        android:padding="180dp"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
 </androidx.drawerlayout.widget.DrawerLayout>

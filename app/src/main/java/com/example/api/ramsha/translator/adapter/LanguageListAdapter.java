@@ -50,6 +50,7 @@ public class LanguageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             public void onClick(View view) {
                 Intent intent=new Intent();
                 intent.putExtra("country",item.getLanguageName());
+                intent.putExtra("languageCode",item.getLanguageCode());
                 if(LanguagesList.resultCode==2)
                     ((LanguagesList)VH.context).setResult(2,intent);
                 else
