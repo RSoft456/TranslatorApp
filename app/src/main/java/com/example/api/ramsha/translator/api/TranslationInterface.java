@@ -1,4 +1,4 @@
-package com.example.api.ramsha.translator.api.apicalls;
+package com.example.api.ramsha.translator.api;
 
 import com.google.gson.JsonArray;
 

@@ -1,8 +1,4 @@
-package com.example.api.ramsha.translator.api.apicalls;
-
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
+package com.example.api.ramsha.translator.api;
 
 import java.util.concurrent.TimeUnit;
 

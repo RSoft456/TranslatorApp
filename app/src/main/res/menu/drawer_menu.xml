@@ -34,5 +34,9 @@
         android:id="@+id/conversation"
         android:title="Conversation"
         />
+    <item
+        android:id="@+id/history"
+        android:title="History"
+        />
 
 </menu>
