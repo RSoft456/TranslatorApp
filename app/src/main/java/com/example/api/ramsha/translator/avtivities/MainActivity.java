@@ -17,6 +17,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -39,6 +40,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.gson.JsonArray;
 
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
     ImageButton camera, mike, translate, volume, sound;
     ImageView cancel, swap;
     DrawerLayout drawerLayout;
-    NavigationView navigationView;
     TextView languageFrom, languageTo, translatedText, translatedTextLang;
     EditText textToBeTranslated;
     ImageButton inTranslatedMenu;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     private static final int SPEECH_REQUEST_CODE = 0;
     String lName, rName, lNameCode, rNameCode;
-
+    TextToSpeech t1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initSHaredPref();
         toolbar = findViewById(R.id.toolbar);
+
         languageFrom = findViewById(R.id.leftLanguage);
         languageTo = findViewById(R.id.rightLanguage);
         camera = findViewById(R.id.camera);
@@ -81,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         volume = findViewById(R.id.volume);
         cancel = findViewById(R.id.cancelButton);
         drawerLayout = findViewById(R.id.DrawerLayout);
-        navigationView = findViewById(R.id.Navigation_menu);
         inTranslatedMenu = findViewById(R.id.inTranslatedMenu);
         textToBeTranslated = findViewById(R.id.textToBeTranslated);
         translatedText = findViewById(R.id.translatedText);
@@ -106,6 +107,11 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("RIGHTNAMECODE", rightlangcode);
             languageFrom.setText(leftlang);
             languageTo.setText(rightlang);
+            camera.setVisibility(View.GONE);
+            mike.setVisibility(View.GONE);
+            cancel.setVisibility(View.VISIBLE);
+            translate.setVisibility(View.VISIBLE);
+
             translatedTextArea.setVisibility(View.VISIBLE);
             textToBeTranslated.setText(input);
             translatedText.setText(output);
@@ -167,8 +173,29 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
+        t1 =new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    Toast.makeText(MainActivity.this, "success", Toast.LENGTH_SHORT).show();
+                    // Setting the language to use
+                    rNameCode = sharedPreference.getString("RIGHTNAMECODE", "Ur");
+                    Locale obj = new Locale(rName,"");
+                    t1.setLanguage(Locale.UK);
+                } else {
+                    Toast.makeText(MainActivity.this, "fail", Toast.LENGTH_SHORT).show();
+                    Log.e("t1", "failed");
+                }
+            }
+        });
+        sound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String toSpeak = translatedText.getText().toString();
+                Toast.makeText(getApplicationContext(), toSpeak,Toast.LENGTH_SHORT).show();
+                t1.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -182,7 +209,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
-                getTranslation(textToBeTranslated.getText().toString(), "en", "ur");
+                lNameCode = sharedPreference.getString("LEFTNAMECODE", "En");
+                rNameCode = sharedPreference.getString("RIGHTNAMECODE", "Ur");
+                getTranslation(textToBeTranslated.getText().toString(), lNameCode, rNameCode);
 
                 //translatedText.setText(textToBeTranslated.getText());
             }
@@ -196,29 +225,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_baseline_menu_24);
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int menuItemid = item.getItemId();
-                if (menuItemid == R.id.clipboard) {
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                } else if (menuItemid == R.id.conversation) {
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                    Intent i = new Intent(MainActivity.this, Conversation.class);
-                    startActivity(i);
-                } else if (menuItemid == R.id.history) {
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                    Intent i = new Intent(MainActivity.this, TranslationHistory.class);
-                    startActivity(i);
-                }
-                return false;
+                finish();
             }
         });
         languageFrom.setOnClickListener(new View.OnClickListener() {
@@ -248,7 +259,13 @@ public class MainActivity extends AppCompatActivity {
         getSharedPre();
 
     }
-
+    public void onPause(){
+        if(t1 !=null){
+            t1.stop();
+            t1.shutdown();
+        }
+        super.onPause();
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -261,6 +278,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("LEFTNAME", lang);
                 editor.putString("LEFTNAMECODE", langCode);
                 editor.apply();
+
             } else if (requestCode == 3) {
                 String lang = data.getStringExtra("country");
                 String langCode = data.getStringExtra("languageCode");
@@ -268,13 +286,18 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("RIGHTNAME", lang);
                 editor.putString("RIGHTNAMECODE", langCode);
                 editor.apply();
+                lNameCode = sharedPreference.getString("LEFTNAMECODE", "En");
+                rNameCode = sharedPreference.getString("RIGHTNAMECODE", "Ur");
+                getTranslation(textToBeTranslated.getText().toString(),lNameCode,rNameCode);
+
             } else if (requestCode == SPEECH_REQUEST_CODE && resultCode == RESULT_OK) {
                 List<String> results = data.getStringArrayListExtra(
                         RecognizerIntent.EXTRA_RESULTS);
                 String spokenText = results.get(0);
                 textToBeTranslated.setText(spokenText);
-                translatedTextArea.setVisibility(View.VISIBLE);
-                translatedText.setText(spokenText);
+                lNameCode = sharedPreference.getString("LEFTNAMECODE", "En");
+                rNameCode = sharedPreference.getString("RIGHTNAMECODE", "Ur");
+                getTranslation(spokenText,lNameCode,rNameCode);
                 // Do something with spokenText.
             }
 
@@ -286,8 +309,7 @@ public class MainActivity extends AppCompatActivity {
 
         lName = sharedPreference.getString("LEFTNAME", "English");
         rName = sharedPreference.getString("RIGHTNAME", "Urdu");
-        lNameCode = sharedPreference.getString("LEFTNAMECODE", "En");
-        rNameCode = sharedPreference.getString("RIGHTNAMECODE", "Ur");
+
         languageFrom.setText(lName);
         languageTo.setText(rName);
 

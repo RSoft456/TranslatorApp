@@ -4,9 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2085" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable-v24/translate.xml" value="0.1315" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/button_background.xml" value="0.1615" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/button_bg_2.xml" value="0.205" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/camera_bg.xml" value="0.2215" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/clearbtn_bg.xml" value="0.205" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/conversation_bg.xml" value="0.2225" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/dictionary_bg.xml" value="0.2215" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.205" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.2045" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.2045" />
@@ -33,20 +37,25 @@
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/mic_bg_2.xml" value="0.205" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/receiver_conversation_bg.xml" value="0.205" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/sender_conversation_bg.xml" value="0.205" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/startpage_bg.xml" value="0.2215" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/translated_textarea_background.xml" value="0.536" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/translator_bg.xml" value="0.2215" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/drawable/white_bg.xml" value="0.2395" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/activity_api_integration.xml" value="0.15416666666666667" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/activity_conversation.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/activity_languages_list.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/activity_start_page.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/activity_translation_history.xml" value="0.140234375" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/drawer_header.xml" value="0.24895833333333334" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/drawer_layout.xml" value="0.24895833333333334" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/history_items.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/language_list_items.xml" value="0.24895833333333334" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/receiver_conversation_item.xml" value="0.18671875" />
-        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/sender_conversation_item.xml" value="0.6" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/sender_conversation_item.xml" value="0.4" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/layout/test.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/menu/conversation_menu.xml" value="0.18671875" />
+        <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/menu/crown.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/menu/drawer_menu.xml" value="0.24895833333333334" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/menu/navigation_menu.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/Translator/app/src/main/res/menu/pop_up_menu.xml" value="0.24895833333333334" />

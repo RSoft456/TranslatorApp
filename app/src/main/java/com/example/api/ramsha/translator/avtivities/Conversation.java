@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -22,18 +23,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.api.ramsha.translator.R;
 import com.example.api.ramsha.translator.adapter.ConversationAdapter;
 import com.example.api.ramsha.translator.adapter.LanguageListAdapter;
+import com.example.api.ramsha.translator.api.RetrofitClient;
+import com.example.api.ramsha.translator.db.LanguageDBClass;
+import com.example.api.ramsha.translator.db.LanguageEntity;
 import com.example.api.ramsha.translator.models.ConversationModel;
 import com.example.api.ramsha.translator.models.LanguageModel;
+import com.google.gson.JsonArray;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Conversation extends AppCompatActivity {
     Toolbar toolbar;
@@ -41,12 +51,15 @@ public class Conversation extends AppCompatActivity {
     ImageView left, right,leftMike,rightMike,swapConvo;
     TextView _left, _right;
     RecyclerView RV;
+    int type;
     ConversationAdapter rvAdapter = new ConversationAdapter();
     SharedPreferences sharedPreference;
     SharedPreferences.Editor editor;
     private static final int SPEECH_REQUEST_CODE = 0;
     private static final int SPEECH_REQUEST_CODE2 = 1;
     String speech = null;
+    String input,output;
+    String result;
     ArrayList<ConversationModel> convoList = new ArrayList<>();
 
     @Override
@@ -173,29 +186,39 @@ clearButton.setVisibility(View.GONE);
         if (data != null) {
             if (requestCode == 2) {
                 String lang = data.getStringExtra("country");
+                String langCode=data.getStringExtra("languageCode");
                 _left.setText(lang);
                 editor.putString("LNAME", lang);
+                editor.putString("LNAMECODE",langCode);
                 editor.apply();
             } else if (requestCode == 3) {
                 String lang = data.getStringExtra("country");
+                String langCode=data.getStringExtra("languageCode");
                 _right.setText(lang);
                 editor.putString("RNAME", lang);
+                editor.putString("RNAMECODE",langCode);
                 editor.apply();
             } else if (requestCode == SPEECH_REQUEST_CODE && resultCode == RESULT_OK) {
                 List<String> results = data.getStringArrayListExtra(
                         RecognizerIntent.EXTRA_RESULTS);
                 String spokenText = results.get(0);
-                convoList.add(new ConversationModel(1,spokenText,spokenText));
-                clearButton.setVisibility(View.VISIBLE);
-                rvAdapter.setData(convoList);
+                String leftCode = sharedPreference.getString("LNAMECODE", "English");
+                String rightCode = sharedPreference.getString("RNAMECODE", "Urdu");
+                type=1;
+                getTranslation(spokenText,leftCode,rightCode);
+
+
                 // Do something with spokenText.
             } else if (requestCode == SPEECH_REQUEST_CODE2 && resultCode == RESULT_OK) {
                 List<String> results = data.getStringArrayListExtra(
                         RecognizerIntent.EXTRA_RESULTS);
+              //  input = results.get(0);
                 String spokenText = results.get(0);
-                convoList.add(new ConversationModel(0,spokenText,spokenText));
-                clearButton.setVisibility(View.VISIBLE);
-                rvAdapter.setData(convoList);
+                String leftCode = sharedPreference.getString("LNAMECODE", "English");
+                String rightCode = sharedPreference.getString("RNAMECODE", "Urdu");
+                type=2;
+                getTranslation(spokenText,rightCode,leftCode);
+
                 // Do something with spokenText.
             }
 
@@ -207,6 +230,7 @@ clearButton.setVisibility(View.GONE);
     private void getSharedPre() {
         String leftName = sharedPreference.getString("LNAME", "English");
         String rightName = sharedPreference.getString("RNAME", "Urdu");
+
         _left.setText(leftName);
         _right.setText(rightName);
 
@@ -230,5 +254,50 @@ clearButton.setVisibility(View.GONE);
             startActivityForResult(intent, SPEECH_REQUEST_CODE2);
 
     }
+    private void getTranslation(String inputWord, String inputLanguageCode, String targetLanguageCode) {
+        RetrofitClient retro = new RetrofitClient();
+        Call<JsonArray> translate = retro.getTranslationInterface().getTrans(inputLanguageCode, targetLanguageCode, inputWord);
+        StringBuilder sb = new StringBuilder();
+        final String[] finalResult = new String[1];
+        translate.enqueue(new Callback<JsonArray>() {
 
+             @Override
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                try {
+                    JsonArray langArray = response.body();
+                    JsonArray array2 = (JsonArray) langArray.get(0);
+                    for (int i = 0; i < array2.size(); i++) {
+                        JsonArray parseResult = (JsonArray) array2.get(i);
+                        result = parseResult.get(0).getAsString();
+                        if (!result.contains("null")) {
+                            sb.append(result);
+                        }
+                        else{
+                            Toast.makeText(Conversation.this, "hiiiii" , Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    if (speech.equals("leftSpeech")){
+                        convoList.add(new ConversationModel(1,inputWord,sb.toString()));
+                    clearButton.setVisibility(View.VISIBLE);
+                    rvAdapter.setData(convoList);}
+                    else if (speech.equals("rightSpeech")) {
+                        convoList.add(new ConversationModel(0,inputWord,sb.toString()));
+                        clearButton.setVisibility(View.VISIBLE);
+                        rvAdapter.setData(convoList);
+                    }
+                    //addToDb();
+                } catch (Exception e) {
+                    Toast.makeText(Conversation.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<JsonArray> call, Throwable t) {
+                Toast.makeText(Conversation.this, "fail", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+    }
 }

@@ -10,8 +10,11 @@
     <color name="grey">#DDEFECEC</color>
     <color name="grey2">#DCDCDC</color>
     <color name="grey3">#676767</color>
-
+    <color name="pink">#F7347A</color>
     <color name="steelBlue">#4598DA</color>
+    <color name="CameraColor">#36D9AA</color>
+    <color name="ConversationColor">#CD98F4</color>
+    <color name="DictiionaryColor">#00D7EC</color>
 
     <color name="yellow">#DCBC69</color>
     <color name="blue">#4286F5</color>

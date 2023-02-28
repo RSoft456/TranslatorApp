@@ -16,6 +16,15 @@
         android:theme="@style/Theme.Translator"
         tools:targetApi="31">
         <activity
+            android:name=".avtivities.StartPage"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".avtivities.TranslationHistory"
             android:exported="false" />
         <activity
@@ -27,11 +36,7 @@
         <activity
             android:name=".avtivities.MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

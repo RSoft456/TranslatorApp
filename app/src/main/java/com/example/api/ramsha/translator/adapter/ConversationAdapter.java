@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,6 +38,7 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
+
         ConversationModel item = conversationSet.get(position);
 
         if (item != null) {
@@ -44,7 +46,6 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 case ConversationModel.Receiver_TYPE:
                     ((receiverViewHolder) holder).receiverText.setText(item.getConvoTextToBeTranslated());
                     ((receiverViewHolder) holder).receiverTranslatedText.setText(item.getConvoTranslatedText());
-
                     break;
                 case ConversationModel.Sender_TYPE:
                     ((senderViewHolder) holder).senderText.setText(item.getConvoTextToBeTranslated());
@@ -81,23 +82,27 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public static class senderViewHolder extends RecyclerView.ViewHolder {
 
         TextView senderText,senderTranslatedText;
+        ImageView soundSender;
 
         public senderViewHolder(View itemView) {
             super(itemView);
 
             this.senderText = (TextView) itemView.findViewById(R.id.textInConvoSender);
             this.senderTranslatedText = (TextView) itemView.findViewById(R.id.translatedTextInConvoSender);
+            this.soundSender = (ImageView) itemView.findViewById(R.id.volumeTextConvoSender);
+
         }
     }
     public static class receiverViewHolder extends RecyclerView.ViewHolder {
 
         TextView receiverText,receiverTranslatedText;
-
+        ImageView soundReceiver;
         public receiverViewHolder(View itemView) {
             super(itemView);
 
             this.receiverText = (TextView) itemView.findViewById(R.id.textInConvoReceiver);
             this.receiverTranslatedText = (TextView) itemView.findViewById(R.id.translatedTextInConvoReceiver);
+            this.soundReceiver = (ImageView) itemView.findViewById(R.id.volumeTextConvoReceiver);
         }
     }
 }

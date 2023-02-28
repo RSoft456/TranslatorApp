@@ -227,13 +227,7 @@
     </LinearLayout>
 
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/Navigation_menu"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/drawer_menu" />
+
     <ProgressBar
 
         android:id="@+id/progressBar"
